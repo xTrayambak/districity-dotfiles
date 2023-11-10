@@ -1,0 +1,3 @@
+[config]
+uses = "XDG"
+belongs_to = "foot/"

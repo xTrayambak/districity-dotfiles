@@ -1,0 +1,14 @@
+# Desktop workflow stuff
+
+[core]
+programs = [
+	"hyprland",
+	"waybar",
+	"swaylock",
+	"swaybg",
+	"wofi",
+	"cava",
+	"foot",
+	"mako",
+	"feh"
+]

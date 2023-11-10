@@ -1,0 +1,8 @@
+[core]
+programs = [
+	"arduino",
+	"avr-gcc",
+	"avrdude"
+]
+
+imports = []

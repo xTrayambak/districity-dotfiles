@@ -1,0 +1,147 @@
+* {
+    font-family: FontAwesome, RobotoMono;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(59, 66, 82, 0.0);
+    border-radius: 0px;
+    color: #FFFFFF;
+    transition-property: background-color;
+    transition-duration: .5s; 
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#window,
+#custom-weather
+{
+    padding: 0 10px;
+    margin: 3px 0;
+    color: rgba(46, 52, 64, 0.4998);
+    border-radius: 10px;
+}
+
+#custom-cava 
+{
+	margin: 3px 0;
+	padding: 0 10px;
+	border-radius: 10px;
+}
+
+#workspaces
+{
+	padding: 0 5px;
+	margin: 3px 0;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+
+#clock,
+#window,
+#workspaces,
+#battery,
+#cpu,
+#memory,
+#disk,
+#backlight,
+#network,
+#pulseaudio,
+#temperature,
+#custom-notification,
+#custom-weather,
+#custom-playerlabel,
+#custom-playerctl.backward,
+#custom-playerctl.play,
+#custom-playerctl.forward,
+#tray
+{
+    background-color: rgba(46, 52, 64, 0.4998);
+    color: #FFFFFF;
+}
+
+#tray {
+	margin-right: 10px;
+}
+
+#custom-weather {
+	margin: 3px 0px;
+}
+
+#clock {
+	margin-right: 5px;
+}
+
+#pulseaudio {
+	margin-left: 10px;
+	border-radius: 10px 0px 0px 10px;
+}
+
+#temperature {
+	border-radius: 0px 0px 0px 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+#network {
+	border-radius: 10px 0px 0px 10px;
+}
+
+#battery {
+	border-radius: 0px 0px 0px 0px;
+}
+
+#clock {
+	border-radius: 0px 10px 10px 0px;
+}
+
+#custom-weather {
+	border-radius: 0px 10px 10px 0px;
+}
+
+#custom-cava 
+{
+	background-color: rgba(46, 52, 64, 0.4998);
+}
+
+#custom-playerlabel
+{
+	border-radius: 10px 0px 0px 0px;
+}
+
+#custom-playerctl.backward {
+	margin-left: 10px;
+	border-radius: 10px 0px 0px 0px;
+	padding-left: 16px;
+	margin-left: 7px;
+}
+
+#custom-playerctl.play {
+	border-radius: 0px 0px 0px 0px;
+	padding: 0 5px;
+}
+
+#custom-playerctl.forward {
+	border-radius: 0px 0px 10px 0px;
+	padding-right: 12px;
+        margin-right: 7px
+}
+
+#custom-playerctl.backward,
+#custom-playerctl.play,
+#custom-playerctl.forward
+{
+	font-weight: bold;
+	font-size: 22px;
+}

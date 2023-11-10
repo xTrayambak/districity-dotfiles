@@ -1,0 +1,20 @@
+[core]
+programs = [
+	"zsh",
+	"clang",
+	"neovim",
+	"cloc",
+	"flatpak",
+	"github-cli-git",
+	"wl-clipboard",
+	"btop"
+]
+
+imports = [
+	"programming_languages.toml", 
+	"desktop.toml", 
+	"fonts.toml", 
+	"arduino_tools.toml",
+	"apps.toml",
+	"games.toml"
+]

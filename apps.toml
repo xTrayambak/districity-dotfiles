@@ -1,0 +1,10 @@
+[core]
+programs = [
+	"firefox",
+	"brave-bin",
+	"keepassxc",
+	"armcord-bin",
+	"choosenim-bin"
+]
+
+imports = []

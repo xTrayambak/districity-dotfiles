@@ -1,0 +1,10 @@
+[core]
+programs = [
+	# C
+	"make",
+	"gcc",
+	"clang",
+	"choosenim-bin"
+]
+
+imports = []

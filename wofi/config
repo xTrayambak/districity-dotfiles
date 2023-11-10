@@ -1,0 +1,15 @@
+allow_images = true
+width = 400
+height = 600
+location = bottom_center
+prompt = Search...
+filter_rate = 128
+allow_markup = true
+no_actions = true
+show = drun
+halign = fill
+orientation = vertical
+content_halign = fill
+insensitive = true
+image_size = 40
+gtk_dark = true

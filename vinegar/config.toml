@@ -1,0 +1,21 @@
+[splash]
+enabled = false
+
+[global]
+launcher = "gamemoderun"
+renderer = "OpenGL"
+dxvk = false
+
+[player]
+dxvk = false
+renderer = "OpenGL"
+channel = "zcanary"
+
+[studio]
+dxvk = false
+renderer = "OpenGL"
+channel = "live"
+
+[player.env]
+DXVK_HUD="0"
+MANGOHUD="1"

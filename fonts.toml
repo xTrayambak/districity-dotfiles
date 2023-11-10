@@ -1,0 +1,7 @@
+[core]
+programs = [
+	"otf-font-awesome",
+	"nerd-fonts"
+]
+
+imports = []

@@ -1,0 +1,16 @@
+anchor=top-center
+border-radius=8
+font=monospace 10
+default-timeout=4000
+border-size=4
+background-color=#2e3440
+
+[urgency=normal]
+border-color=#a3be8c
+
+[urgency=low]
+border-color=#b48ead
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0

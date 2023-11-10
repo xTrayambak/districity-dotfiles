@@ -1,0 +1,14 @@
+[core]
+name = "Example Config"
+authors = "xTrayambak"
+
+[distro]
+name = "Arch Linux"
+package_sync_repos = "pakku -Syu --noconfirm"
+package_install_cmd = "pakku -S --noconfirm"
+package_uninstall_cmd = "pakku -R --noconfirm"
+
+[user]
+name = "tray"
+default_password = "districity"
+groups = ["wheel", "kvm", "audio", "input"]
