@@ -1,0 +1,9 @@
+[core]
+programs = [
+	# Install two kernels just for safety.
+	"linux",
+	"linux-zen",
+	"ufw"
+]
+
+imports = []

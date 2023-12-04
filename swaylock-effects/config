@@ -1,0 +1,19 @@
+ignore-empty-password
+font="monospace term"
+font-size=32
+indicator-radius=128
+indicator-thickness=16
+inside-color="ffffff00"
+key-hl-color="3daee9"
+ring-color="1d99f388"
+line-uses-ring
+separator-color="1d99f322"
+text-color="ffffff"
+text-clear-color="ffffff"
+text-caps-lock-color="ffffff"
+effect-vignette=0.5:0.5
+fade-in=0.2
+clock
+indicator
+daemonize
+effect-blur=8x8

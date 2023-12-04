@@ -4,7 +4,12 @@ programs = [
 	"brave-bin",
 	"keepassxc",
 	"armcord-bin",
-	"choosenim-bin"
+	"choosenim-bin",
+	"thunar",
+	"thunar-volman",
+	"gnome-control-center",
+	"windscribe-v2-bin",
+	"discover-overlay"
 ]
 
 imports = []

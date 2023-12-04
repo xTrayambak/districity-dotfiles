@@ -23,12 +23,28 @@ window#waybar {
 #tray,
 #mode,
 #window,
+#custom-vpn,
+#bluetooth,
+#privacy,
 #custom-weather
 {
     padding: 0 10px;
     margin: 3px 0;
     color: rgba(46, 52, 64, 0.4998);
     border-radius: 10px;
+}
+
+#custom-notification
+{
+	padding: 0 10px;
+	margin: 0 0;
+	color: rgba(46, 52, 64, 0.4998);
+	border-radius: 10px;
+}
+
+#user
+{
+	margin: 3px 0;
 }
 
 #custom-cava 
@@ -63,7 +79,10 @@ window#waybar {
 #custom-playerctl.backward,
 #custom-playerctl.play,
 #custom-playerctl.forward,
-#tray
+#custom-vpn,
+#bluetooth,
+#tray,
+#privacy
 {
     background-color: rgba(46, 52, 64, 0.4998);
     color: #FFFFFF;
@@ -86,7 +105,7 @@ window#waybar {
 	border-radius: 10px 0px 0px 10px;
 }
 
-#temperature {
+#temperature, #custom-vpn, #bluetooth, #privacy {
 	border-radius: 0px 0px 0px 0px;
 	margin-left: 0px;
 	margin-right: 0px;

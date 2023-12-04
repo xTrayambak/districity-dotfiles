@@ -2,7 +2,6 @@
 programs = [
 	"zsh",
 	"clang",
-	"neovim",
 	"cloc",
 	"flatpak",
 	"github-cli-git",
@@ -16,5 +15,7 @@ imports = [
 	"fonts.toml", 
 	"arduino_tools.toml",
 	"apps.toml",
-	"games.toml"
+	"games.toml",
+	"system-packages.toml",
+	"editors.toml"
 ]

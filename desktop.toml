@@ -3,12 +3,20 @@
 [core]
 programs = [
 	"hyprland",
-	"waybar",
-	"swaylock",
+	"xdg-desktop-portal-hyprland",
+	"obs-studio",
+	"waybar-cava",
+	"swaylock-effects",
 	"swaybg",
 	"wofi",
 	"cava",
 	"foot",
 	"mako",
-	"feh"
+	"mpv",
+	"feh",
+	"ncmpcpp",
+	"mpd",
+	"yt-dlp",
+	"brightnessctl",
+	"swaync"
 ]

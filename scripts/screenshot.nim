@@ -25,7 +25,13 @@ proc main {.inline.} =
   
   let path = getFilename()
   if ssType == "full":
-    discard execCmd("grim " & path)
+    if execCmd("grim " & path) != 0:
+      if not silent:
+        discard execCmd(
+          "notify-send " &
+          "\"Region Screenshot Cancelled\" "
+        )
+        quit(0)
     
     if not silent:
       discard execCmd(
@@ -34,13 +40,20 @@ proc main {.inline.} =
         "\"Saved as " & path & " and saved to clipboard\" " &
         "--icon=" & path
       )
+       
   elif ssType == "select":
     let dims = execCmdEx("slurp").output.split('\n')[0]
-    discard execCmd(
+    if execCmd(
       "grim -g " & 
       '"' & dims & '"' & 
       ' ' & '"' & path & '"'
-    )
+    ) != 0:
+      if not silent:
+        discard execCmd(
+          "notify-send " &
+          "\"Region Screenshot Cancelled\" "
+        )
+        quit(0)
 
     if not silent:
       discard execCmd(

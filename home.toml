@@ -7,11 +7,7 @@ env = [
 	"PATH=/home/tray/.nimble/bin/:$PATH"
 ]
 rc = """
-export ZSH="$HOME/.oh-my-zsh"
 export PATH="/home/tray/.nimble/bin/:$PATH"
-
 ZSH_THEME="robbyrussell"
 plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
 """

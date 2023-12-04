@@ -5,23 +5,86 @@
 	"position": "top",
 	"modules-left": [
 		"pulseaudio",
+		"battery",
 		"temperature",
 		"custom/weather"
 	],
 	"modules-center": [
-		"custom/cava"
+		"custom/notification"
 	],
 	"modules-right": [
 		"network",
-		"battery",
+		"bluetooth",
+		"custom/vpn",
         	"clock",
-        	"tray"
+		"tray"
 	],
+	"user": {
+		"format": "",
+		"interval": 60,
+		"height": 30,
+		"width": 30,
+		"icon": true
+	},
+	"cava": {
+		"framerate": 60,
+		"bars": 14,
+		"bar_delimiter": 0,
+		"monstercat": true,
+		"noise_reduction": 0.77,
+		"autosens": 1,
+		"source": "auto",
+		"stereo": true,
+		"reverse": false,
+		"waves": false,
+		"format_icons": [
+			"▁",
+                  	"▂", 
+                  	"▃", 
+                  	"▄", 
+                  	"▅", 
+                	"▆", 
+                  	"▇", 
+                  	"█" 
+		],
+		"sensitivity": 100,
+		"lower_cutoff_freq": 50,
+        	"higher_cutoff_freq": 10000,
+		"input_delay": 2
+	},
+	"privacy": {
+		"icon-spacing": 4,
+		"icon-size": 18,
+		"transition-duration": 250,
+		"modules": [
+			{
+				"type": "screenshare",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-in",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-out",
+				"tooltip": false,
+				"tooltip-icon-size": 0
+			}
+		]
+	},
+	"custom/vpn": {
+		"exec": "~/.scripts/waybar_vpn utun420",
+		"return-type": "json",
+		"interval": 1,
+		"on-click": "windscribe"
+	},
 	"tray": {
 		"spacing": 4
 	},
       	"custom/cava": {
-        	"exec": "sleep 1 && cava -p ~/.config/home-manager/setup/cava-custom.conf | sed -u 's/,//g,s/0/▁/g,s/1/▂/g,s/2/▃/g,s/3/▄/g,s/4/▅/g,s/5/▆/g,s/6/▇/g,s/7/█/g,'"
+        	"exec": "cava -p ~/.config/waybar/cava-custom.conf | sed -u 's/,//g,s/0/▁/g,s/1/▂/g,s/2/▃/g,s/3/▄/g,s/4/▅/g,s/5/▆/g,s/6/▇/g,s/7/█/g,'"
       	},
       	"custom/weather": {
 		"exec": "curl -s 'wttr.in/NOIDA?format=1'",
@@ -33,13 +96,13 @@
 		"tooltip": false,
 		"format": "{icon}",
 		"format-icons": {
-			"notification": "<span foreground='red'><sup></sup></span>",
+			"notification": "<span foreground='red'><sup> </sup></span>",
 			"none": "",
-			"dnd-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-notification": "<span foreground='red'><sup> </sup></span>",
 			"dnd-none": "",
-			"inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"inhibited-notification": "<span foreground='red'><sup> </sup></span>",
 			"inhibited-none": "",
-			"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-inhibited-notification": "<span foreground='red'><sup> </sup></span>",
 			"dnd-inhibited-none": ""
 		},
 		"return-type": "json",
@@ -117,12 +180,20 @@
 		"format-icons": ["  ", "  ", "  ", "  ", "  "]
 	},
 	"network": {
-		"format-wifi": "   {essid}",
+		"format-wifi": " ",
 		"on-click": "iwgtk",
-		"tooltip-format": "up: {bandwidthUpBytes} down: {bandwidthDownBytes}",
+		"tooltip-format": "{essid}",
 		"format-ethernet": "",
-		"format-disconnected": "⚠",
+		"format-disconnected": "",
 		"format-disabled": "✈"
+	},
+	"bluetooth": {
+		"format": " ",
+		"on-click": "GTK_THEME=Adwaita-dark blueman-manager",
+		"format-connected": " ",
+		"tooltip-format": "{device_alias}",
+		"tooltip-format-connected": "{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}"
 	},
 	"pulseaudio": {
 		"format": "{icon}  {volume}%",

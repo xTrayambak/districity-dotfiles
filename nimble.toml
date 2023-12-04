@@ -1,0 +1,7 @@
+[core]
+packages = [
+	"pixie",
+	"windy",
+	"naylib",
+	"librng >= 0.1.0"
+]
