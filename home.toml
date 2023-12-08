@@ -10,4 +10,6 @@ rc = """
 export PATH="/home/tray/.nimble/bin/:$PATH"
 ZSH_THEME="robbyrussell"
 plugins=(git)
+
+alias rm=trash
 """
