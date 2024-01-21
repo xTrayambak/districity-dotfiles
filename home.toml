@@ -1,15 +1,13 @@
 [home]
-shell = "zsh"
-oh_my_zsh = true
+shell = "bash"
+oh_my_zsh = false
 env = [
 	"GDK_BACKEND=wayland",
 	"GTK_THEME=Adwaita-dark",
 	"PATH=/home/tray/.nimble/bin/:$PATH"
 ]
 rc = """
-export PATH="/home/tray/.nimble/bin/:$PATH"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 
-alias rm=trash
 """

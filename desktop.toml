@@ -5,7 +5,7 @@ programs = [
 	"hyprland",
 	"xdg-desktop-portal-hyprland",
 	"obs-studio",
-	"waybar-cava",
+	"waybar",
 	"swaylock-effects",
 	"swaybg",
 	"wofi",

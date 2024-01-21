@@ -3,10 +3,10 @@ name = "Example Config"
 authors = "xTrayambak"
 
 [distro]
-name = "Arch Linux"
-package_sync_repos = "pakku -Syu --noconfirm"
-package_install_cmd = "pakku -S --noconfirm"
-package_uninstall_cmd = "pakku -R --noconfirm"
+name = "Fedora Linux"
+package_sync_repos = "dnf upgrade -y"
+package_install_cmd = "dnf install -y"
+package_uninstall_cmd = "dnf remove -y"
 
 [user]
 name = "tray"

@@ -9,12 +9,12 @@ proc main {.inline.} =
 
   if dirExists(bufferString):
     echo $(%* {
-      "text": "󰌆",
+      "text": "🔒",
       "tooltip": "VPN Enabled"
     })
   else:
     echo $(%* {
-      "text": "󰌊",
+      "text": "🔓",
       "tooltip": "VPN Disabled"
     })
 
