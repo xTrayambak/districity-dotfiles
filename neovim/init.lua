@@ -22,6 +22,7 @@ impure_plugins = {
 	"nvim-tree/nvim-web-devicons",    -- Web devicons
 	"nvim-tree/nvim-tree.lua",         -- File tree
 	"ms-jpq/coq_nvim", -- Autocomplete
+	"mrcjkb/rustaceanvim", -- Did you guys know that memory safety is key?
 	-- Nordic theme (<3)
 	{ 
 		"AlexvZyl/nordic.nvim", 

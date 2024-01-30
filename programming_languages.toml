@@ -4,7 +4,8 @@ programs = [
 	"make",
 	"gcc",
 	"clang",
-	"choosenim-bin"
+	"rust",
+	"cargo"
 ]
 
 imports = []
