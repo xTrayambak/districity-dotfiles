@@ -52,7 +52,12 @@ impure_plugins = {
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/nvim-cmp",
-	"nvim-lualine/lualine.nvim"
+	"nvim-lualine/lualine.nvim",
+	"tpope/vim-fugitive",
+	{"nvim-telescope/telescope.nvim", tag = '0.1.5',
+		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
+	"xiyaowong/transparent.nvim"
 }
 
 -- Initialize lazy
@@ -61,8 +66,27 @@ require("lazy").setup(impure_plugins, {})
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+-- Setup telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', builtin.find_files, {})
+vim.keymap.set('n', 'fg', builtin.live_grep, {})
+vim.keymap.set('n', 'fb', builtin.buffers, {})
+vim.keymap.set('n', 'fh', builtin.help_tags, {})
+
+require("transparent").setup({
+	groups = { -- table: default groups
+    		'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    		'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    		'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    		'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+    		'EndOfBuffer', 'NvimTreeNormal', 'NormalFloat', 'NvimTreeNormalNC'
+  	}
+})
+
 -- Setup terminal
-require("toggleterm").setup()
+require("toggleterm").setup(
+
+)
 
 require('lualine').setup {
   options = {
@@ -104,7 +128,7 @@ local theme = {
 -- Initialize treesitter
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "json", "toml", "glsl" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "json", "toml", "glsl", "nim", "rust" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -126,7 +150,7 @@ require("nvim-treesitter.configs").setup({
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "rust" },
+    disable = { },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -144,11 +168,19 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+quotes = {
+	"Those who can, do. Those who cannot, complain.",
+	"Any sufficiently advanced technology is indistinguishable from magic.",
+	"The only way of discovering the limits of the possible is to venture a little way past them into the impossible.",
+	"Premature optimization is the root of all evil.",
+	"A piece of software that explicitly prevents modification is inherently evil."
+}
+
 -- The setup config table shows all available config options with their default values:
 require("presence").setup({
     -- General options
     auto_update         = true,
-    neovim_image_text   = "Emacs is a great gaming platform, it just lacks a good text editor.",
+    neovim_image_text   = quotes[1],
     main_image          = "neovim-mark-flat",                   -- Main image display (either "neovim" or "file")
     client_id           = "1145710737055039660",
     log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
@@ -161,7 +193,7 @@ require("presence").setup({
 
     -- Rich Presence text options
     editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing e file explorer (either string or function(file_explorer_name: string): string)
     git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
     plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
     reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
@@ -211,6 +243,38 @@ nvim_lsp['nimls'].setup{
   init_options = {
     usePlaceholders = true,
   }
+}
+
+-- Lua
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        }
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
 }
 
 -- C/C++

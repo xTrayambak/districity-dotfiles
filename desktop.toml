@@ -12,11 +12,6 @@ programs = [
 	"cava",
 	"foot",
 	"mako",
-	"mpv",
 	"feh",
-	"ncmpcpp",
-	"mpd",
-	"yt-dlp",
-	"brightnessctl",
-	"swaync"
+	"brightnessctl"
 ]

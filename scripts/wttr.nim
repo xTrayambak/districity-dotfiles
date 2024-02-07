@@ -35,10 +35,12 @@ proc wttr*(format: ReportFormat, location: string, url: string = "https://wttr.i
 
 proc waybar*(city: string) =
   assert paramCount() > 1
+  var tooltip: string = wttr(rfNamePlainWind, city)
+  tooltip.removeSuffix('\n')
 
   echo $(%* {
       "text": wttr(rfPlain, city).split('\n')[0],
-      "tooltip": ":3"#wttr(rfNamePlainWind, city).removeSuffix('\n')
+      "tooltip": tooltip
     }
   )
 

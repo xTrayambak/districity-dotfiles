@@ -4,6 +4,8 @@ programs = [
 	"make",
 	"gcc",
 	"clang",
+
+	# Rust
 	"rust",
 	"cargo"
 ]

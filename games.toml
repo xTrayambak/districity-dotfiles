@@ -1,7 +1,0 @@
-[core]
-programs = [
-	"vinegar",
-	"prismlauncher-qt5-bin"
-]
-
-imports = []

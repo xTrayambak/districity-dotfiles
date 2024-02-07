@@ -1,15 +1,6 @@
 [core]
 programs = [
-	"firefox",
-	"brave-bin",
-	"keepassxc",
-	"armcord-bin",
-	"choosenim-bin",
-	"thunar",
-	"thunar-volman",
-	"gnome-control-center",
-	"windscribe-v2-bin",
-	"discover-overlay"
+	"nautilus"
 ]
 
 imports = []

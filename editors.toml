@@ -2,7 +2,6 @@
 
 [core]
 programs = [
-	"emacs-wayland",
 	"neovim"
 ]
 

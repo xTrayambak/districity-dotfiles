@@ -1,7 +1,8 @@
 [core]
 programs = [
-	"otf-font-awesome",
-	"nerd-fonts"
+	"fontawesome-fonts-all",
+	"google-noto-fonts-common",
+	"google-noto-emoji-fonts"
 ]
 
 imports = []
