@@ -85,7 +85,19 @@
 		"spacing": 4
 	},
       	"custom/cava": {
-        	"exec": "cava -p ~/.config/waybar/cava-custom.conf | sed -u 's/,//g,s/0/▁/g,s/1/▂/g,s/2/▃/g,s/3/▄/g,s/4/▅/g,s/5/▆/g,s/6/▇/g,s/7/█/g,'"
+		"format": "{icon}{}",
+    		"format-icons": {
+        		// "Playing": " ", // Uncomment if not using caway
+        		"Paused": " ",
+        		"Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
+    		},
+    		"escape": true,
+    		"tooltip": true,
+    		"exec": "~/.config/waybar/cava.sh",
+    		"return-type": "json",
+    		"on-click": "playerctl play-pause",
+    		"on-scroll-up": "playerctl previous",
+    		"on-scroll-down": "playerctl next"
       	},
       	"custom/weather": {
 		"exec": "~/.scripts/wttr waybar NOIDA",
@@ -102,12 +114,13 @@
                 },
                 "format": "{icon}  {capacity}%",
                 "format-charging": "  {capacity}%",
-                "format-plugged": " {capacity}% ",
+                "format-plugged": "  {capacity}% ",
                 "format-alt": "{icon} {time}",
                 "format-icons": ["", "", "", "", ""]
         },
 	"clock": {
-		"format": "<span foreground='#e5e9f0'> </span> {:%a %d %H:%M}",
+		"format": "<span foreground='#e5e9f0'> </span> {:%a %d %H:%M:%S}",
+		"interval": 1,
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
 	"cpu": {
@@ -149,6 +162,7 @@
 		"format": "{icon}  {volume}%",
 		"format-muted": "",
 		"format-source": "",
+		"on-click": "pavucontrol",
 		"format-source-muted": "",
 		"on-hover": "{source}%",
 		"format-icons": {
