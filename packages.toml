@@ -14,6 +14,7 @@ imports = [
 	"desktop.toml", 
 	"fonts.toml", 
 	"apps.toml",
+	"games.toml",
 	"system-packages.toml",
 	"editors.toml"
 ]

@@ -40,9 +40,7 @@ impure_plugins = {
       			'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
       			'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     		},
-    		init = function() 
-			vim.g.barbar_auto_setup = false
-		end,
+    		init = function() vim.g.barbar_auto_setup = false end,
     		opts = {},
     		version = '^1.0.0', -- optional: only update when a new 1.x version is released
   	},
@@ -59,9 +57,7 @@ impure_plugins = {
 	{"nvim-telescope/telescope.nvim", tag = '0.1.5',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-	"xiyaowong/transparent.nvim",
-	"NvChad/nvterm",
-	"startup-nvim/startup.nvim"
+	"xiyaowong/transparent.nvim"
 }
 
 -- Initialize lazy
@@ -77,7 +73,6 @@ vim.keymap.set('n', 'fg', builtin.live_grep, {})
 vim.keymap.set('n', 'fb', builtin.buffers, {})
 vim.keymap.set('n', 'fh', builtin.help_tags, {})
 
--- Setup transparency effect
 require("transparent").setup({
 	groups = { -- table: default groups
     		'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
@@ -85,83 +80,14 @@ require("transparent").setup({
     		'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
     		'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
     		'EndOfBuffer', 'NvimTreeNormal', 'NormalFloat', 'NvimTreeNormalNC'
-  	},
-	extra_groups = {
-    		"NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
-    		"NvimTreeNormal", -- NvimTree
-    		"NvimTreeNormalNC",
-    		"NvimTreeWinSeparator",
-    		"TelescopeNormal",
-    		"TelescopeBorder",
-    		"WhichKeyFloat",
-  	}, -- table: additional groups that should be cleared
-  	exclude_groups = {} -- table: groups you don't want to clear
+  	}
 })
 
--- Setup barbar
-require("barbar").setup({
-  sidebar_filetypes = {
-    -- Use the default values: {event = 'BufWinLeave', text = nil}
-    NvimTree = true,
-    -- Or, specify the text used for the offset:
-    undotree = {text = 'undotree'},
-    -- Or, specify the event which the sidebar executes when leaving:
-    ['neo-tree'] = {event = 'BufWipeout'},
-    -- Or, specify both
-    Outline = {event = 'BufWinLeave', text = 'symbols-outline'},
-  },	
-})
+-- Setup terminal
+require("toggleterm").setup(
 
--- Setup NvTerm
-require("nvterm").setup({
-  terminals = {
-    shell = vim.o.shell,
-    list = {},
-    type_opts = {
-      float = {
-        relative = 'editor',
-        row = 0.3,
-        col = 0.25,
-        width = 0.5,
-        height = 0.4,
-        border = "single",
-      },
-      horizontal = { location = "rightbelow", split_ratio = .3, },
-      vertical = { location = "rightbelow", split_ratio = .5 },
-    }
-  },
-  behavior = {
-    autoclose_on_quit = {
-      enabled = false,
-      confirm = true,
-    },
-    close_on_exit = true,
-    auto_insert = true,
-  },
-})
-
--- Add some terminal keybinds
-local term = require("nvterm.terminal")
-
-vim.keymap.set('n', 'tt', function() 
-		term.toggle "horizontal"
-	end, 
-	{}
 )
 
-vim.keymap.set('n', 'nb', function()
-		term.send("nimble build", "horizontal")
-	end,
-	{}
-)
-
-vim.keymap.set('n', 'nr', function()
-		term.send("nimble run", "horizontal")
-	end,
-	{}
-)
-
--- Setup my status bar
 require('lualine').setup {
   options = {
     theme = "codedark",
@@ -171,7 +97,6 @@ require('lualine').setup {
       statusline = {},
       winbar = {},
   },
-  offsets = {{filetype = "NvimTree", text = "File Explorer", padding = 0 }},
 }
 
 -- Setup zig-tools
@@ -202,6 +127,7 @@ local theme = {
 }
 -- Initialize treesitter
 require("nvim-treesitter.configs").setup({
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "json", "toml", "glsl", "nim", "rust" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -224,6 +150,7 @@ require("nvim-treesitter.configs").setup({
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
+    disable = { },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -241,22 +168,19 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
--- Discord rich presence
-local quotes = {
+quotes = {
 	"Those who can, do. Those who cannot, complain.",
 	"Any sufficiently advanced technology is indistinguishable from magic.",
 	"The only way of discovering the limits of the possible is to venture a little way past them into the impossible.",
-	"Premature optimization is the root of all evil."
+	"Premature optimization is the root of all evil.",
+	"A piece of software that explicitly prevents modification is inherently evil."
 }
-
-math.randomseed(os.clock())
-local qIdx = math.floor(math.random() * #quotes) + 1
 
 -- The setup config table shows all available config options with their default values:
 require("presence").setup({
     -- General options
     auto_update         = true,
-    neovim_image_text   = quotes[qIdx],
+    neovim_image_text   = quotes[1],
     main_image          = "neovim-mark-flat",                   -- Main image display (either "neovim" or "file")
     client_id           = "1145710737055039660",
     log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
@@ -269,7 +193,7 @@ require("presence").setup({
 
     -- Rich Presence text options
     editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-    file_explorer_text  = "Browsing",              -- Format string rendered when browsing e file explorer (either string or function(file_explorer_name: string): string)
+    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing e file explorer (either string or function(file_explorer_name: string): string)
     git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
     plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
     reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
@@ -362,11 +286,3 @@ nvim_lsp['clangd'].setup {
     usePlaceholders = true,
   }
 }
-
--- More keybinds
-vim.keymap.set('n', 'qq',
-	function()
-		vim.cmd(":bdelete <cr>")
-	end,
-	{}
-)
